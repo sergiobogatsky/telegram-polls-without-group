@@ -1,0 +1,11 @@
+{
+    "name": "sergi/telegram-polls-without-group",
+    "description": "Polls API for easy integration into any project on PHP Laravel",
+    "authors": [
+        {
+            "name": "Sergio Bogatsky",
+            "email": "sergiobogatsky@gmail.com"
+        }
+    ],
+    "require": {}
+}
