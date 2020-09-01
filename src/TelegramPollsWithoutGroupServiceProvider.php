@@ -25,6 +25,6 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/migrations/2020_08_31_102254_create_polls_table.php');
     }
 }
