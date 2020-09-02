@@ -13,7 +13,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('/models/Poll/Poll');
+        $this->app->make(\Poll::class);
     }
 
     /**
