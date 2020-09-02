@@ -2,6 +2,7 @@
 
 namespace SergioBogatsky\TelegramPollsWithoutGroup;
 
+use App\Poll;
 use Illuminate\Support\ServiceProvider;
 
 class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make(\Poll::class);
+        $this->app->make(Poll::class);
     }
 
     /**
