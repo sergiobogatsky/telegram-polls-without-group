@@ -13,6 +13,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->
         $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Poll');
         $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Question');
         $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Response');
@@ -25,6 +26,14 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/migrations/2020_08_31_102254_create_polls_table.php');
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes');
+        $this->loadViewsFrom(__DIR__.'/views', 'SergioBogatsky\TelegramPollsWithoutGroup');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                'php artisan migrate'
+            ]);
+        }
     }
 }
