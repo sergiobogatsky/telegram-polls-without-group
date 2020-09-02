@@ -14,7 +14,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make(Poll::class);
+        //$this->app->make(Poll::class);
     }
 
     /**
@@ -34,4 +34,5 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
             ]);
         }
     }
+
 }
