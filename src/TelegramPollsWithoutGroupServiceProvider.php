@@ -13,9 +13,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Poll');
-        $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Question');
-        $this->app->make('SergioBogatsky\TelegramPollsWithoutGroup\models\Poll\Response');
+        $this->app->make('/models/Poll/Poll');
     }
 
     /**
