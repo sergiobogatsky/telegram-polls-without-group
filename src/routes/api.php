@@ -1,7 +1,5 @@
 <?php
 
-namespace SergioBogatsky\TelegramPollsWithoutGroup\routes;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
