@@ -2,7 +2,6 @@
 
 namespace SergioBogatsky\TelegramPollsWithoutGroup;
 
-use App\Poll;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,10 +24,13 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //tables
         $this->loadMigrationsFrom(__DIR__.'/migrations');
+        //routes
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/views', 'SergioBogatsky\TelegramPollsWithoutGroup');
+        //views
+        $this->loadViewsFrom(__DIR__.'/views', 'polls');//SergioBogatsky\TelegramPollsWithoutGroup
 
         if ($this->app->runningInConsole()) {
             Artisan::call('migrate');

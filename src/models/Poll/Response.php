@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Poll;
 
 use Illuminate\Database\Eloquent\Model;
 

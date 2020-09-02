@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/polls', function () {
-    return view('SergioBogatsky\TelegramPollsWithoutGroup::prueba');
+    return view('polls::prueba');
 });
