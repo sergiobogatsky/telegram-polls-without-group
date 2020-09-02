@@ -69,7 +69,7 @@
             @foreach(\Poll\Poll::all() as $poll)
             <div class="content">
                 <div class="title m-b-md">
-                    $poll->title
+                    {{$poll->title}}
                 </div>
             </div>
             @endforeach
