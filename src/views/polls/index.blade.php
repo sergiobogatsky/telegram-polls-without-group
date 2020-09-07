@@ -5,4 +5,4 @@
 
     </div>
 @endsection
-<script src="{{public_path('js/polls.js')}}"></script>
+<script src="{{asset('js/polls.js')}}"></script>
