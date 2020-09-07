@@ -12926,9 +12926,11 @@ Vue.component('index', __webpack_require__(/*! ./pages/Index */ "./packages/serg
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var polls = new Vue({
-  el: '#poll'
-});
+window.onload = function () {
+  var polls = new Vue({
+    el: '#poll'
+  });
+};
 
 /***/ }),
 
