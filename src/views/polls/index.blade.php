@@ -1,13 +1,8 @@
 @extends('layouts/app')
 
 @section('content')
-    <div class="container">
-        <Index></Index>
+    <div id="poll" class="container">
+
     </div>
 @endsection
-<script>
-    import Index from "../../resources/js/pages/Index";
-    export default {
-        components: {Index}
-    }
-</script>
+<script src="/public/js/app.js"></script>
