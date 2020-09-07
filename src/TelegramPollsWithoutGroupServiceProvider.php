@@ -38,7 +38,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             Artisan::call('migrate');
-            Artisan::call('vendor:publish SergioBogatsky\TelegramPollsWithoutGroup\TelegramPollsWithoutGroupServiceProvider');
+            Artisan::call('vendor:publish --provider="SergioBogatsky\TelegramPollsWithoutGroup\TelegramPollsWithoutGroupServiceProvider"');
         }
     }
 
