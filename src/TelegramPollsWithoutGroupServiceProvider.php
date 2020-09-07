@@ -33,7 +33,7 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/views', 'polls');//SergioBogatsky\TelegramPollsWithoutGroup
 
         $this->publishes([
-            __DIR__.'public/js/polls.js' => base_path('public/js')
+            __DIR__.'public/js/polls.js' => public_path('js')
         ]);
 
         if ($this->app->runningInConsole()) {
