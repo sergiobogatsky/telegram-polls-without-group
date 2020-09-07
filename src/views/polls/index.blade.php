@@ -5,4 +5,4 @@
 
     </div>
 @endsection
-<script src="/public/js/app.js"></script>
+<script src="{{public_path('js/polls.js')}}"></script>

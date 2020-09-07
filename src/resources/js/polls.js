@@ -24,6 +24,6 @@ Vue.component('index', require('./pages/Index').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+const polls = new Vue({
     el: '#poll',
 });
