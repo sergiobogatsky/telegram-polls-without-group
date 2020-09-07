@@ -10,8 +10,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "SergioBogatsky\\TelegramPollsWithoutGroup\\": "src/",
-            "Poll\\": "src/models/Poll/"
+            "SergioBogatsky\\TelegramPollsWithoutGroup\\": "src/"
         },
         "classmap": [
 

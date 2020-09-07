@@ -1,6 +1,6 @@
 <?php
 
-namespace Poll;
+namespace SergioBogatsky\TelegramPollsWithoutGroup\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
