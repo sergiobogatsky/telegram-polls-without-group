@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/polls', function () {
-    return view('polls::index');
+    return view('polls::polls.index');
 });
 
 //Route::resource('polls', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController');
