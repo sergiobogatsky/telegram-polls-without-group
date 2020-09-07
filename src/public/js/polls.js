@@ -12919,7 +12919,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('index', __webpack_require__(/*! ./pages/Index */ "./packages/sergiobogatsky/telegram-polls-without-group/src/resources/js/pages/Index.vue")["default"]);
+Vue.component('Index', __webpack_require__(/*! ./pages/Index */ "./packages/sergiobogatsky/telegram-polls-without-group/src/resources/js/pages/Index.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
