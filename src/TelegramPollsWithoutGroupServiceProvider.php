@@ -32,10 +32,16 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
         //views
         $this->loadViewsFrom(__DIR__.'/views', 'polls');//SergioBogatsky\TelegramPollsWithoutGroup
 
+
+
         $this->publishes([
-            __DIR__.'/public/js/polls.js' => public_path('js/polls.js')
+            //views from VUE
+            __DIR__.'/public/js/polls.js' => public_path('js/polls.js'),
+            //send messages via telegram
+            __DIR__.'/Telegram.php' => base_path('Telegram.php'),
         ]);
 
+        //commands to add tables to db
         if ($this->app->runningInConsole()) {
             Artisan::call('migrate');
             Artisan::call('vendor:publish --provider="SergioBogatsky\TelegramPollsWithoutGroup\TelegramPollsWithoutGroupServiceProvider"');

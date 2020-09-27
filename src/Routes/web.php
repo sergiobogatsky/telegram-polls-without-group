@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/polls', function () {
-    return view('polls::polls.index');
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/polls', function () {
+        return view('polls::polls.index');
+    });
+    Route::get('/polls/{any?}', function (){
+        return view('polls::polls.index');
+    })->where('any', '^(?!api\/)[\/\w\.-]*');
 });
-
-//Route::resource('polls', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController');

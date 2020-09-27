@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
-});*/
+});
+
+Route::group(['prefix' => 'api', 'middleware' => ['web', 'auth']], function () {
+    Route::post('polls', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@index');
+    Route::post('polls/store', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@store');
+    Route::post('polls/show/{id}', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@show');
+    Route::post('polls/test', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@test');
+});

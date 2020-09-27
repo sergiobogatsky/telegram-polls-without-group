@@ -11,24 +11,13 @@ class PollsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
-        //
-        $polls = Poll::all();
+        $polls = Poll::all()->load('questions');
 
-        return view('polls::polls.index', compact('polls'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('polls::polls.create');
+        return response()->json($polls, 200);
     }
 
     /**
@@ -39,7 +28,26 @@ class PollsController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect()->action('PollsController@index');
+        $request->validate([
+            'poll.title' => 'required|max:255',
+            'poll.description' => 'required|max:255',
+            'poll.questions.*.text' => 'required|max:255',
+            'poll.questions.*.type' => 'in:unique,multiple,text,sort|required',
+            'poll.questions.*.responses' => 'required_unless:poll.questions.*.type,text',
+            'poll.questions.*.responses.*.text' => 'required_unless:poll.questions.*.type,text|max:255',
+            'poll.questions.*.responses.*.callback_data' => 'required_unless:poll.questions.*.type,text|max:255',
+        ]);
+
+        $poll = Poll::create($request->poll);
+
+        $poll->storeQuestionsAndResponses($request->poll);
+
+        $poll->sendPoll();
+
+        return response()->json([
+            'message'=> 'poll created and sent',
+            'id' => $poll->id
+        ], 200);
     }
 
     /**
@@ -50,44 +58,24 @@ class PollsController extends Controller
      */
     public function show($id)
     {
-        //
+        $poll = Poll::find($id)->load(['questions' => function ($query) {
+            $query->with(['responses' => function ($query) {
+                $query->with('clients');
+            }, 'clients']);
+        }]);
+        return response()->json($poll, 200);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Test API for the polls
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function edit($id)
+    public function test (Request $request)
     {
-        $poll = Poll::find($id);
-        return view('polls::edit', compact($poll));
+        Poll::checkAndSavePollAnswer($request);
+
+        return response('ok', 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        return redirect()->action('PollsController@index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $poll = Poll::find($id);
-        $poll->questions()->detach();
-        $poll->delete();
-        return redirect()->action('PollsController@index');
-    }
 }

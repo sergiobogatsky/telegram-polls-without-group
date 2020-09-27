@@ -3,7 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-window.Vue = require('vue');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -16,15 +16,42 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('Index', require('./pages/Index').default);
+//Vue.component('Index', require('./pages/Index').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import 'es6-promise/auto'
+import axios from 'axios'
+import Vue from 'vue'
+import VueAxios from 'vue-axios'
+import VueRouter from 'vue-router'
+import router from './router'
+
+import Index from "./pages/Index";
+
+import Paginate from 'vuejs-paginate'
+
+Vue.component('paginate', Paginate)
+
+// Set Vue globally
+window.Vue = Vue;
+
+// Set Vue router
+Vue.router = router
+Vue.use(VueRouter)
+
+Vue.use(VueAxios, axios)
+
+axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api`
+
 window.onload = function () {
+    // Load Index
+    Vue.component('index', Index);
     const polls = new Vue({
         el: '#poll',
+        router
     });
 };

@@ -19,7 +19,6 @@ class CreateResponsesTable extends Migration
             $table->string('text');
             $table->string('callback_data');
             $table->integer('total')->default(0);
-            $table->integer('sort_position')->nullable();
             $table->timestamps();
         });
     }
