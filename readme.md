@@ -20,5 +20,10 @@ Publish provider and select it inside of the list:
 php artisan vendor:publish --force
 ```
 
+Put the code before on first position of webhook controller of telegram:
+```bash
+php artisan vendor:publish --force
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
