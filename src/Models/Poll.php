@@ -75,9 +75,10 @@ class Poll extends Model
         }
     }
 
+
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return false|\Illuminate\Http\JsonResponse
      */
     static function checkAndSavePollAnswer (Request $request)
     {
@@ -114,6 +115,9 @@ class Poll extends Model
                 $type = $question->type;
                 return $question->$type($request, $data);
             }
+        }
+        else {
+            return false;
         }
     }
 }
