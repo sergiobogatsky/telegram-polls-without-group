@@ -31,7 +31,8 @@ class TelegramPollsWithoutGroupServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
         //views
         $this->loadViewsFrom(__DIR__.'/views', 'polls');//SergioBogatsky\TelegramPollsWithoutGroup
-
+        //translations
+        $this->loadTranslationsFrom(__DIR__.'/translations', 'polls');
 
 
         $this->publishes([

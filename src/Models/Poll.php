@@ -64,10 +64,10 @@ class Poll extends Model
                 }
 
                 if ($question->type == 'multiple') {
-                    $responses['{"question_id": "'. $question->id .'", "command": "finish"}'] = 'finish question';
+                    $responses['{"question_id": "'. $question->id .'", "command": "finish"}'] = trans('polls::messages.finish question');
                 }
                 else if ($question->type == 'text') {
-                    $responses['{"question_id": "'. $question->id .'", "command": "answer"}'] = 'answer the question';
+                    $responses['{"question_id": "'. $question->id .'", "command": "answer"}'] = trans('polls::messages.answer the question');
                 }
 
                 Telegram::sendInlineButtons($client->id_telegram, $responses, $question->text);
@@ -102,7 +102,7 @@ class Poll extends Model
                     $response->text = $request->input('message.text');
                     $response->save();
                     Telegram::deleteMessage($request->input('message.from.id'), $request->input('message.message_id'));
-                    return Telegram::sendText($request->input('message.from.id'), 'Your answer to the poll question has been added');
+                    return Telegram::sendText($request->input('message.from.id'), trans('polls::messages.your answer to the poll question has been added'));
                 }
             }
         }

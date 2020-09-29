@@ -45,7 +45,7 @@ class PollsController extends Controller
         $poll->sendPoll();
 
         return response()->json([
-            'message'=> 'poll created and sent',
+            'message'=> trans('polls::messages.poll created and sent'),
             'id' => $poll->id
         ], 200);
     }

@@ -22,7 +22,10 @@ php artisan vendor:publish --force
 
 Put the code before on first position of webhook controller of telegram:
 ```bash
-php artisan vendor:publish --force
+//polls added from SergioBogatsky\TelegramPollsWithoutGroup
+        if (Poll::checkAndSavePollAnswer($request)) {
+            return;
+        }
 ```
 
 ## License

@@ -10,7 +10,7 @@ class Telegram
 {
     protected const telegramBotToken = 'services.telegram.general-telegram-bot-token';
 
-    //https://api.telegram.org/bot652175166:AAHvH7FRcfLYHVU91KbSD2KPf15IIrUEzWM/setWebhook?url=https://f4103bcbe7dc.ngrok.io/api/polls/test //ariste464366834
+    //https://api.telegram.org/bot652175166:AAHvH7FRcfLYHVU91KbSD2KPf15IIrUEzWM/setWebhook?url=https://20f5a525076c.ngrok.io/api/polls/test //ariste464366834
 
     /**
      * @param $telegramId

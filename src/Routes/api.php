@@ -18,7 +18,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'api', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'api'/*, 'middleware' => ['web', 'auth']*/], function () {
     Route::post('polls', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@index');
     Route::post('polls/store', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@store');
     Route::post('polls/show/{id}', 'SergioBogatsky\TelegramPollsWithoutGroup\Controllers\PollsController@show');

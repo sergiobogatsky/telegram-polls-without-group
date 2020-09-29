@@ -54,7 +54,7 @@ class Question extends Model
         $client = Client::where('id_telegram', $request->input('callback_query.from.id'))->first();
         $client->responses()->syncWithoutDetaching($response->id);
 
-        Telegram::sendText($request->input('callback_query.from.id'), 'your response has been added');
+        Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.your response has been added'));
         return Telegram::deleteMessage($request->input('callback_query.message.chat.id'), $request->input('callback_query.message.message_id'));
     }
 
@@ -68,7 +68,7 @@ class Question extends Model
     {
         if (property_exists($data, 'command')) {
 
-            Telegram::sendText($request->input('callback_query.from.id'), 'Multiple answers have been added');
+            Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.multiple answers have been added'));
             return Telegram::deleteMessage($request->input('callback_query.message.chat.id'), $request->input('callback_query.message.message_id'));
         }
         else {
@@ -77,7 +77,7 @@ class Question extends Model
 
             foreach ($client->responses as $response) {
                 if ($response->id == $data->id) {
-                    return Telegram::sendText($request->input('callback_query.from.id'), 'response already have been added');
+                    return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.response already have been added'));
                 }
             }
 
@@ -87,7 +87,7 @@ class Question extends Model
 
             $client->questions()->syncWithoutDetaching($data->question_id);
             $client->responses()->syncWithoutDetaching($response->id);
-            return Telegram::sendText($request->input('callback_query.from.id'), 'response added');
+            return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.response added'));
         }
     }
 
@@ -104,14 +104,14 @@ class Question extends Model
 
             $response = $question->responses()->create([
                 'text' => 'waiting for response',
-                'callback_data' => 'waiting for response'
+                'callback_data' => 'waiting for response' //dont change it
             ]);
 
             $client = Client::where('id_telegram', $request->input('callback_query.from.id'))->first();
             $client->responses()->syncWithoutDetaching($response->id);
 
             Telegram::deleteMessage($request->input('callback_query.message.chat.id'), $request->input('callback_query.message.message_id'));
-            return Telegram::sendText($request->input('callback_query.from.id'), 'write the response below: ');
+            return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.write the response below: '));
         }
     }
 
@@ -135,7 +135,7 @@ class Question extends Model
 
             if ($client->responses->contains($response)) {
 
-                return Telegram::sendText($request->input('callback_query.from.id'), 'You have already added this position');
+                return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.you have already added this position'));
             }
             else {
 
@@ -147,11 +147,11 @@ class Question extends Model
                 if ($question->responses_count == $client->responses_count + 1) {
 
                     Telegram::deleteMessage($request->input('callback_query.message.chat.id'), $request->input('callback_query.message.message_id'));
-                    return Telegram::sendText($request->input('callback_query.from.id'), 'sort question resolved');
+                    return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.sort question resolved'));
                 }
                 else {
 
-                    return Telegram::sendText($request->input('callback_query.from.id'), 'position ' . ($client->responses_count + 1) . ' to sort added');
+                    return Telegram::sendText($request->input('callback_query.from.id'), trans('polls::messages.position :position to sort added', ['position' => $client->responses_count + 1]));
                 }
             }
         }
